@@ -4,6 +4,9 @@ import { loadAccounts } from "../accounts/storage.ts";
 import { resolveAihubmixAccessKey } from "../aihubmix/auth.ts";
 import { fetchAihubmixUsage } from "../aihubmix/fetcher.ts";
 import type { AihubmixError, AihubmixUsage } from "../aihubmix/types.ts";
+import { checkAmpCredentials } from "../amp/auth.ts";
+import { checkAntigravityCredentials } from "../antigravity/credential-check.ts";
+import { checkGrokCredentials } from "../grok/auth.ts";
 import { fetchAmpUsage } from "../amp/fetcher.ts";
 import type { AmpError, AmpUsage } from "../amp/types.ts";
 import { fetchAntigravityUsage } from "../antigravity/fetcher.ts";
@@ -45,6 +48,9 @@ import { fetchMinimaxCNUsage } from "../minimaxcn/fetcher.ts";
 import type { MinimaxCNError, MinimaxCNUsage } from "../minimaxcn/types.ts";
 import { fetchOpencodegoUsage, OPENCODEGO_OPENCODE_KEY } from "../opencode-go/fetcher.ts";
 import type { OpencodegoError, OpencodegoUsage } from "../opencode-go/types.ts";
+import { resolveOpenRouterApiKey } from "../openrouter/auth.ts";
+import { fetchOpenRouterUsage } from "../openrouter/fetcher.ts";
+import type { OpenRouterError, OpenRouterUsage } from "../openrouter/types.ts";
 import { fetchSyntheticUsage, SYNTHETIC_OPENCODE_KEY } from "../synthetic/fetcher.ts";
 import type { SyntheticError, SyntheticUsage } from "../synthetic/types.ts";
 import { resolveZaiAuthTokens } from "../zai/auth.ts";
@@ -74,6 +80,7 @@ type SharedPrefs = {
   minimaxApiToken?: string;
   minimaxcnApiToken?: string;
   opencodegoApiKey?: string;
+  openrouterApiKey?: string;
 };
 
 function prefValue(key: keyof SharedPrefs): string {
@@ -101,11 +108,19 @@ export const useAihubmixUsage = createUsageHook<AihubmixUsage, AihubmixError>({
 
 export const useAmpUsage = createUsageHook<AmpUsage, AmpError>({
   agentId: "amp",
+  credentials: {
+    check: checkAmpCredentials,
+    error: (message) => ({ type: "unknown", message }),
+  },
   fetcher: fetchAmpUsage,
 });
 
 export const useAntigravityUsage = createUsageHook<AntigravityUsage, AntigravityError>({
   agentId: "antigravity",
+  credentials: {
+    check: checkAntigravityCredentials,
+    error: (message) => ({ type: "unknown", message }),
+  },
   fetcher: () => fetchAntigravityUsage(),
 });
 
@@ -194,6 +209,10 @@ export const useGeminiUsage = createUsageHook<GeminiUsage, GeminiError>({
 
 export const useGrokUsage = createUsageHook<GrokUsage, GrokError>({
   agentId: "grok",
+  credentials: {
+    check: checkGrokCredentials,
+    error: (message) => ({ type: "unknown", message }),
+  },
   fetcher: fetchGrokUsage,
 });
 
@@ -259,6 +278,24 @@ export const useOpencodegoUsage = createUsageHook<OpencodegoUsage, OpencodegoErr
       };
     }
     return fetchOpencodegoUsage(apiKey);
+  },
+});
+
+export const useOpenRouterUsage = createUsageHook<OpenRouterUsage, OpenRouterError>({
+  agentId: "openrouter",
+  resolveAuthKey: async () => (await resolveOpenRouterApiKey(prefValue("openrouterApiKey"))) ?? "",
+  fetcher: async (apiKey) => {
+    if (!apiKey) {
+      return {
+        usage: null,
+        error: {
+          type: "not_configured",
+          message:
+            "OpenRouter API key not configured. Add it in extension settings (Cmd+,), log in through OpenCode, or set OPENROUTER_API_KEY in your shell.",
+        },
+      };
+    }
+    return fetchOpenRouterUsage(apiKey);
   },
 });
 
