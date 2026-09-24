@@ -1,5 +1,9 @@
 # Changelog
 
+## [Raycast API 2.5 Compatibility] - 2026-09-24
+
+- Updated the extension to Raycast API 2.5.0.
+
 ## [Add Xerox Status OIDs] - 2026-09-08
 
 - Added support for waste toner bottle level monitoring
