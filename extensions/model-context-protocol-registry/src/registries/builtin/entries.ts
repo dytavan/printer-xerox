@@ -1,7 +1,23 @@
+import { homedir } from "os";
+import { join } from "path";
 import { Color, Icon } from "@raycast/api";
 import type { RegistryEntry } from "./types";
 
+const METABRAIN_DB_PATH = join(homedir(), ".metabrain.db");
+
 export const OFFICIAL_ENTRIES: RegistryEntry[] = [
+  {
+    name: "blindpay",
+    title: "BlindPay",
+    description:
+      "Stablecoin API for global payments. Create receivers and virtual accounts, get FX quotes, run payouts and payins across bank rails and blockchains, and read balances and transaction history. Remote Streamable HTTP server with BlindPay OAuth 2.1 sign-in through `mcp-remote`; no API key needed.",
+    icon: "https://github.com/blindpaylabs.png",
+    homepage: "https://github.com/blindpaylabs/blindpay-mcp",
+    configuration: {
+      command: "npx",
+      args: ["-y", "mcp-remote", "https://mcp.blindpay.com/mcp"],
+    },
+  },
   {
     name: "atono",
     title: "Atono",
@@ -69,6 +85,18 @@ export const OFFICIAL_ENTRIES: RegistryEntry[] = [
     configuration: {
       command: "npx",
       args: ["-y", "mcp-remote", "https://circleback.ai/api/mcp"],
+    },
+  },
+  {
+    name: "codex-reset",
+    title: "Codex Reset",
+    description:
+      "Ask whether OpenAI Codex usage limits are likely to reset: the reset probability for the next 24 and 48 hours, the dated record of verified resets with source links, and Codex service status to tell an outage from a usage limit. Read-only remote Streamable HTTP server at https://codex-reset.com/mcp through `mcp-remote`; no sign-in, no API key.",
+    icon: "https://codex-reset.com/icon-512.png",
+    homepage: "https://codex-reset.com/developers",
+    configuration: {
+      command: "npx",
+      args: ["-y", "mcp-remote", "https://codex-reset.com/mcp"],
     },
   },
   {
@@ -144,6 +172,18 @@ export const OFFICIAL_ENTRIES: RegistryEntry[] = [
     configuration: {
       command: "npx",
       args: ["-y", "mcp-remote", "https://glif.app/api/mcp"],
+    },
+  },
+  {
+    name: "gtd-brain",
+    title: "GTD Brain",
+    description:
+      "Getting Things Done board: capture to Inbox, next actions by context, projects, waiting-for and a weekly review, on the same board as the GTD Brain web, iOS and Android apps. Hosted remote server with OAuth 2.1 sign-in (email code), no API key to paste.",
+    icon: "https://gtdbrain.com/gtdbrain/icon-512.png",
+    homepage: "https://gtdbrain.com/connect?source=raycast-mcp-registry",
+    configuration: {
+      command: "npx",
+      args: ["-y", "mcp-remote", "https://mcp.gtdbrain.com/api/gtdbrain/v1/mcp"],
     },
   },
   {
@@ -231,6 +271,18 @@ export const OFFICIAL_ENTRIES: RegistryEntry[] = [
     },
   },
   {
+    name: "quantral",
+    title: "Quantral",
+    description:
+      "Stock sentiment scores (0-100) per company from the retail investor and market commentator sources Quantral tracks, plus top signals, monthly recaps and the mentions behind each score. Hosted remote server with OAuth sign-in; Quantral subscription required.",
+    icon: "https://app.quantral.com/mcp-icon.png?v=2",
+    homepage: "https://quantral.com/mcp",
+    configuration: {
+      command: "npx",
+      args: ["-y", "mcp-remote", "https://app.quantral.com/api/mcp"],
+    },
+  },
+  {
     name: "kagimcp",
     title: "Kagi Search",
     description: "The Official Model Context Protocol (MCP) server for Kagi search & other tools.",
@@ -313,6 +365,18 @@ export const OFFICIAL_ENTRIES: RegistryEntry[] = [
     },
   },
   {
+    name: "pixelesq",
+    title: "Pixelesq",
+    description:
+      "Build and manage your Pixelesq website from Raycast: create pages, edit sections, write content, fix SEO and read analytics, with every edit saved as a draft until you publish.",
+    icon: "https://mcp.pixelesq.app/icon.png",
+    homepage: "https://www.pixelesq.com/docs/integrations/claude",
+    configuration: {
+      command: "npx",
+      args: ["-y", "mcp-remote", "https://mcp.pixelesq.app/mcp"],
+    },
+  },
+  {
     name: "posteverywhere",
     title: "PostEverywhere",
     description:
@@ -340,6 +404,19 @@ export const OFFICIAL_ENTRIES: RegistryEntry[] = [
     },
   },
   {
+    name: "quillhub",
+    title: "QuillHub",
+    description:
+      "Search your meeting transcripts, read who said what, pull decisions and action items, get quotes from one person across meetings, and transcribe new files or YouTube links. Hosted remote server with OAuth 2.1 sign-in, no API key to paste.",
+    icon: "https://raw.githubusercontent.com/Tim-nocode/quillhub-mcp/main/logo.png",
+    homepage:
+      "https://quillhub.ai/en/help/mcp-claude-cursor?utm_source=raycast&utm_medium=directory&utm_campaign=mcp-listing",
+    configuration: {
+      command: "npx",
+      args: ["-y", "mcp-remote", "https://mcp.quillhub.ai/mcp"],
+    },
+  },
+  {
     name: "razuna",
     title: "Razuna",
     description:
@@ -355,6 +432,18 @@ export const OFFICIAL_ENTRIES: RegistryEntry[] = [
     configuration: {
       command: "npx",
       args: ["-y", "mcp-remote", "https://mcp.razuna.YOUR_REGION/sse?access-token=YOUR_ACCESS_TOKEN"],
+    },
+  },
+  {
+    name: "removeduplicates",
+    title: "RemoveDuplicates.org",
+    description:
+      "Remove duplicate lines from a text list, or duplicate rows from CSV/TSV text such as rows copied from Excel or Google Sheets, and get the cleaned text back with counts. Remote Streamable HTTP server at https://removeduplicates.org/mcp through `mcp-remote`; no sign-in and no API key, and text is never stored.",
+    icon: "https://removeduplicates.org/icon-512.png",
+    homepage: "https://removeduplicates.org/",
+    configuration: {
+      command: "npx",
+      args: ["-y", "mcp-remote", "https://removeduplicates.org/mcp"],
     },
   },
   {
@@ -419,6 +508,18 @@ export const OFFICIAL_ENTRIES: RegistryEntry[] = [
     },
   },
   {
+    name: "sitelemetry",
+    title: "Sitelemetry",
+    description:
+      "Authorized website audits for the sites you own or maintain: security posture, technical SEO, AI visibility (GEO/AEO), analytics integrations, WCAG 2.2 accessibility and performance, returning evidence-backed findings with fixes in nine languages. Hosted remote server with OAuth sign-in, no API key to paste.",
+    icon: "https://sitelemetry.com/favicon.svg",
+    homepage: "https://sitelemetry.com/mcp-guide",
+    configuration: {
+      command: "npx",
+      args: ["-y", "mcp-remote", "https://sitelemetry.com/mcp"],
+    },
+  },
+  {
     name: "slack",
     title: "Slack",
     description: "This service provides a Model Context Provider (MCP) for interacting with Slack's API.",
@@ -432,6 +533,18 @@ export const OFFICIAL_ENTRIES: RegistryEntry[] = [
         SLACK_TEAM_ID: "T01234567",
         SLACK_CHANNEL_IDS: "C01234567, C76543210",
       },
+    },
+  },
+  {
+    name: "socialfaktory",
+    title: "SocialFaktory",
+    description:
+      "Write, generate, schedule and publish a brand's social content, in its own voice, on every channel: TikTok, Instagram, YouTube, X, LinkedIn, Facebook and Pinterest. Remote Streamable HTTP server with SocialFaktory OAuth 2.1 sign-in through `mcp-remote`; no API key needed.",
+    icon: "https://www.socialfaktory.com/connector-icon-512.png",
+    homepage: "https://www.socialfaktory.com",
+    configuration: {
+      command: "npx",
+      args: ["-y", "mcp-remote", "https://www.socialfaktory.com/mcp"],
     },
   },
   {
@@ -928,6 +1041,18 @@ export const COMMUNITY_ENTRIES: RegistryEntry[] = [
     },
   },
   {
+    name: "agentmailkit",
+    title: "AgentMailKit",
+    description:
+      "Email job runner for agents. Tools: list_jobs, run_job, preview_job, list_plugins. Email sends are defined as named jobs, run_job renders a preview and defaults to dry_run true, and delivery happens only when dry_run is set false. SMTP credentials come from the environment.",
+    icon: "https://github.com/ariaxhan.png",
+    homepage: "https://github.com/ariaxhan/agentmailkit",
+    configuration: {
+      command: "uvx",
+      args: ["--from", "agentmailkit[mcp]", "agentmailkit", "mcp"],
+    },
+  },
+  {
     name: "airbnb",
     title: "Airbnb",
     description: "MCP Server for searching Airbnb and get listing details.",
@@ -1135,6 +1260,18 @@ export const COMMUNITY_ENTRIES: RegistryEntry[] = [
     },
   },
   {
+    name: "metabrain",
+    title: "Metabrain",
+    description:
+      "Persistent memory for coding agents. Tools: learn, recall, verdict, hypotheses, start_brief, stats, capture_error. Lessons, failures and hypotheses are written to a local SQLite file and retrieved by keyword before the next task. No API key and no network call.",
+    icon: "https://github.com/ariaxhan.png",
+    homepage: "https://github.com/ariaxhan/metabrain",
+    configuration: {
+      command: "uvx",
+      args: ["--from", "metabrain[mcp]", "metabrain-mcp", "--db", METABRAIN_DB_PATH],
+    },
+  },
+  {
     name: "monday",
     title: "Monday",
     description:
@@ -1207,6 +1344,18 @@ export const COMMUNITY_ENTRIES: RegistryEntry[] = [
     },
   },
   {
+    name: "site-spec",
+    title: "Site Spec",
+    description:
+      "Website audit and repair. Tools: audit_site, fix_issue, compile_spec, list_checks. 40 checks across SEO, accessibility, privacy, structured data and AI searchability, each finding returned with the file and the fix. No API key required.",
+    icon: "https://github.com/ariaxhan.png",
+    homepage: "https://github.com/ariaxhan/site-spec",
+    configuration: {
+      command: "npx",
+      args: ["-y", "site-spec-mcp"],
+    },
+  },
+  {
     name: "stellary",
     title: "Stellary",
     description:
@@ -1228,6 +1377,30 @@ export const COMMUNITY_ENTRIES: RegistryEntry[] = [
     configuration: {
       command: "npx",
       args: ["-y", "@gitdealflow/mcp-signal@latest"],
+    },
+  },
+  {
+    name: "vibe-prospecting",
+    title: "Vibe Prospecting",
+    description:
+      "Power your chat with live B2B data to create lead lists, research companies, enrich contacts, personalize outreach, and inspect business signals, technology stacks, events, and website changes.",
+    icon: "https://raw.githubusercontent.com/explorium-ai/vibeprospecting-plugin/main/assets/icon.png",
+    homepage: "https://vibeprospecting.ai",
+    configuration: {
+      command: "npx",
+      args: ["-y", "mcp-remote", "https://vibeprospecting.explorium.ai/mcp"],
+    },
+  },
+  {
+    name: "empiriolabs",
+    title: "EmpirioLabs AI",
+    description:
+      "Run 180+ AI models, image, video and speech generation, web search and research with citations, batch jobs, GPU Cloud and hosted agents as tools. Remote Streamable HTTP server with OAuth 2.1 sign-in through mcp-remote; an EmpirioLabs API key works as a bearer token too.",
+    icon: "https://empiriolabs.ai/images/icon-dark-512.png",
+    homepage: "https://docs.empiriolabs.ai/mcp",
+    configuration: {
+      command: "npx",
+      args: ["-y", "mcp-remote", "https://mcp.empiriolabs.ai/mcp"],
     },
   },
 ];
